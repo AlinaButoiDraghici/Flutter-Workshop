@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   animated_text_kit: ^4.2.1
+  flutter_riverpod: ^1.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

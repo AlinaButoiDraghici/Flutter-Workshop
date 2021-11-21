@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:my_first_flutter_app/otherscreen.dart';
 
 class MyScreen extends StatefulWidget {
   const MyScreen({Key? key}) : super(key: key);
@@ -13,6 +14,13 @@ class _MyScreenState extends State<MyScreen> {
   String _buttonText = "Press me";
   bool _petPressed = false;
   String _imagePath = 'assets/cat.jpg';
+  String _txt = 'Hello word';
+
+  void pushNewPage(screen) {
+    setState(() {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +40,7 @@ class _MyScreenState extends State<MyScreen> {
               color: Colors.green[100],
               child: Center(
                 child: Text(
-                  'Hello word!',
+                  _txt,
                   style: TextStyle(
                       color: Colors.green[800],
                       fontSize: 20,
@@ -82,16 +90,33 @@ class _MyScreenState extends State<MyScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.green,
+        color: Colors.green[100],
         child: Container(
             height: 50,
-            child: Center(
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  TyperAnimatedText("STIRI DE ULTIMA ORA: SOC! SOC! SOC!",
-                      textStyle: TextStyle(fontSize: 20)),
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 250,
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TyperAnimatedText("STIRI DE ULTIMA ORA: SOC! SOC! SOC!",
+                          textStyle: TextStyle(fontSize: 20)),
+                    ],
+                  ),
+                ),
+                Container(
+                    width: 50,
+                    child: ElevatedButton(
+                      child: const Icon(Icons.arrow_forward_ios),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                      ),
+                      onPressed: () {
+                        pushNewPage(OtherScreen());
+                      },
+                    ))
+              ],
             )),
       ),
     );
